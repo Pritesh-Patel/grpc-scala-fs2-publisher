@@ -1,12 +1,14 @@
 version: 2
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
-     - setup_remote_docker
-     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REPO
-     - run: docker build -t pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH .
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REPO
+      - run: docker build -t pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH .
     depoloy:
       name: Publishing docker image
       command: |
