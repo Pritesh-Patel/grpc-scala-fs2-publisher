@@ -1,0 +1,17 @@
+version: 2
+jobs:
+ build:
+   machine: true
+   steps:
+     - checkout
+     - setup_remote_docker
+     - run: docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REPO
+     - run: docker build -t pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH .
+    depoloy:
+      name: Publishing docker image
+      command: |
+        docker push pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH
+        if [ "${CIRCLE_BRANCH}" == "master" ]; then
+          docker tag pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH pritesh-patel/grpc-scala-fs2-publisher:latest
+          docker push pritesh-patel/grpc-scala-fs2-publisher:latest
+        fi
