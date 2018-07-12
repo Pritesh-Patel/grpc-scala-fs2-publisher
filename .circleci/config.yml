@@ -8,12 +8,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS $DOCKER_REPO
-      - run: docker build -t pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH .
+      - run: docker build -t $DOCKER_REPO/grpc-scala-fs2-publisher:$CIRCLE_BRANCH .
       - run:
           name: Publishing docker image
           command: |
-            docker push pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH
+            docker push $DOCKER_REPO/grpc-scala-fs2-publisher:$CIRCLE_BRANCH
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker tag pritesh-patel/grpc-scala-fs2-publisher:$CIRCLE_BRANCH pritesh-patel/grpc-scala-fs2-publisher:latest
-              docker push pritesh-patel/grpc-scala-fs2-publisher:latest
+              docker tag $DOCKER_REPO/grpc-scala-fs2-publisher:$CIRCLE_BRANCH $DOCKER_REPO/grpc-scala-fs2-publisher:latest
+              docker push $DOCKER_REPO/grpc-scala-fs2-publisher:latest
             fi
