@@ -4,7 +4,7 @@
 
  [![Download](https://api.bintray.com/packages/pritesh-patel/registry/grpc-scala-fs2-publisher/images/download.svg) ](https://bintray.com/pritesh-patel/registry/grpc-scala-fs2-publisher/_latestVersion)
 
-Docker image takes `.proto` files, compiles them used fs2-grpc and then publishes them to bintray.
+Docker image takes `.proto` files, compiles them used fs2-grpc and then publishes the library to bintray.
 
 Mount a directory with `.proto` files to `/protobuf`.
 
