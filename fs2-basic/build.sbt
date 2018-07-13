@@ -2,6 +2,7 @@ name := sys.env.get("NAME").getOrElse("NO_NAME")
 version := sys.env.get("VERSION").getOrElse("0.0.0-SNAPSHOT")
 bintrayVcsUrl := sys.env.get("VCS_URL")
 bintrayOrganization := sys.env.get("ORGANIZATION")
+bintrayPackage := sys.env.get("NAME").getOrElse("NO_NAME")
 
 
 
